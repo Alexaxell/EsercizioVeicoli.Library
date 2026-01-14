@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EsercizioVeicoli.Library
 {
-    internal class AutoCarro : Veicolo
+    public class AutoCarro : Veicolo
     {
         public double CapacitaCaricoTonnelate { get; set; }
 
