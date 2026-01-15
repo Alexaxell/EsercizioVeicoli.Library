@@ -27,5 +27,14 @@ namespace EsercizioVeicoli.Library
         {
             return LitriCarburanteConsumato;
         }
+
+        public override string ToString()
+        {
+            return string.Format($"Targa: {Targa} \n" +
+                                 $"Marca: {Marca} \n" +
+                                 $"Chilometri percorsi: {KmPercorsi} \n" +
+                                 $"litri di carburante consumato: {LitriCarburanteConsumato} \n" +
+                                 $"Numero posti: {NumeroPosti}");
+        }
     }
 }
