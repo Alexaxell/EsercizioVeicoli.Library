@@ -23,7 +23,11 @@ namespace EsercizioVeicolo.Library.Console
                 System.Console.WriteLine("8. Litri di carburante consumati da un autoveicolo.");
                 System.Console.WriteLine("9. Stampa la lista degli autoveicoli.");
                 System.Console.WriteLine("10. Stampa la lista degli autocarri.");
-                System.Console.WriteLine("11. Esci.");
+                System.Console.WriteLine("11. Rimuovi un autoveicolo.");
+                System.Console.WriteLine("12. Rimuovi un autocarro.");
+                System.Console.WriteLine("13. Ordina la lista degli autoveicoli per cavalli.");
+                System.Console.WriteLine("14. Ordina la lista degli autocarri per cavalli.");
+                System.Console.WriteLine("15. Esci.");
                 System.Console.WriteLine();
                 scelta = System.Console.ReadLine();
 
@@ -32,6 +36,7 @@ namespace EsercizioVeicolo.Library.Console
                 int numeroPosti;
                 double kmPercorsi;
                 double litriCarburanteConsumato;
+                int cavalli;
 
                 switch (scelta)
                 {
@@ -46,6 +51,8 @@ namespace EsercizioVeicolo.Library.Console
                         litriCarburanteConsumato = double.Parse(System.Console.ReadLine());
                         System.Console.WriteLine("Inserisci il numero di posti dell'autoveicolo: ");
                         numeroPosti = int.Parse(System.Console.ReadLine());
+                        System.Console.WriteLine("Inserisci il numero di cavalli: ");
+                        cavalli = int.Parse(System.Console.ReadLine());
 
                         autoveicoloCollection.Add(targa, new AutoVeicolo
                         {
@@ -53,7 +60,8 @@ namespace EsercizioVeicolo.Library.Console
                             Marca = marca,
                             KmPercorsi = kmPercorsi,
                             LitriCarburanteConsumato = litriCarburanteConsumato,
-                            NumeroPosti = numeroPosti
+                            NumeroPosti = numeroPosti,
+                            Cavalli = cavalli
                         });
 
                         System.Console.WriteLine();
@@ -71,6 +79,8 @@ namespace EsercizioVeicolo.Library.Console
                         litriCarburanteConsumato = double.Parse(System.Console.ReadLine());
                         System.Console.WriteLine("Inserisci la capacità del carico di tonnellate dell'autocarro: ");
                         double capacitaCaricoTonnellate = double.Parse(System.Console.ReadLine());
+                        System.Console.WriteLine("Inserisci il numero di cavalli: ");
+                        cavalli = int.Parse(System.Console.ReadLine());
 
                         autocarroCollection.Add(targa, new AutoCarro
                         {
@@ -78,7 +88,8 @@ namespace EsercizioVeicolo.Library.Console
                             Marca = marca,
                             KmPercorsi = kmPercorsi,
                             LitriCarburanteConsumato = litriCarburanteConsumato,
-                            CapacitaCaricoTonnelate = capacitaCaricoTonnellate
+                            CapacitaCaricoTonnelate = capacitaCaricoTonnellate,
+                            Cavalli = cavalli
                         });
 
                         System.Console.WriteLine();
@@ -204,11 +215,62 @@ namespace EsercizioVeicolo.Library.Console
                         break;
 
                     case "11":
+                        System.Console.WriteLine("Inserisci il numero di targa dell'autoveicolo che vuoi eliminare:");
+                        targa = System.Console.ReadLine();
+
+                        if (autoveicoloCollection.ContainsKey(targa))
+                        {
+                            AutoVeicolo autoveicoloTrovato = autoveicoloCollection[targa];
+                            autoveicoloCollection.Remove(autoveicoloTrovato.ToString());
+                        }
+                        else
+                            System.Console.WriteLine("Non è stata trovata nessuna corrispondenza con un autocarro.");
+
+                        System.Console.WriteLine();
+
+                        break;
+
+                    case "12":
+                        System.Console.WriteLine("Inserisci il numero di targa dell'autocarro che vuoi eliminare:");
+                        targa = System.Console.ReadLine();
+
+                        if (autocarroCollection.ContainsKey(targa))
+                        {
+                            AutoCarro autocarroTrovato = autocarroCollection[targa];
+                            System.Console.WriteLine($"Litri: {autocarroTrovato.GetLitriCarburanteConsumato().ToString()}");
+                        }
+                        else
+                            System.Console.WriteLine("Non è stata trovata nessuna corrispondenza con un autocarro.");
+
+                        System.Console.WriteLine();
+
+                        break;
+
+                    case "13":
+                        if (autoveicoloCollection.Count == 0)
+                        {
+                            System.Console.WriteLine("La collezione di autoveicoli è vuota");
+                            return;
+                        }
+
+                        var listaAutoveicoli = new List<AutoVeicolo>(autoveicoloCollection.Values);
+
+                        listaAutoveicoli.Sort();
+
+                        foreach (var autoveicolo in listaAutoveicoli)
+                        {
+                            System.Console.WriteLine(autoveicolo);
+                        }
+
+                        break;
+
+                    case "15":
                         return;
 
                     default:
                         System.Console.WriteLine("Scelta non valida.");
                         System.Console.WriteLine();
+
                         break;
                 }
             }

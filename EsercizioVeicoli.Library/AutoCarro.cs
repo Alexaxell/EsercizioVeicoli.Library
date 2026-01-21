@@ -12,8 +12,8 @@ namespace EsercizioVeicoli.Library
 
         public AutoCarro() {}
 
-        public AutoCarro(string targa, string marca, double kmPercorsi, double carbunteConsumato, double capacitaCaricoTonnellate) :
-            base(targa, marca, kmPercorsi, carbunteConsumato)
+        public AutoCarro(string targa, string marca, double kmPercorsi, double carbunteConsumato, double capacitaCaricoTonnellate, int cavalli) :
+            base(targa, marca, kmPercorsi, carbunteConsumato, cavalli)
         {
             CapacitaCaricoTonnelate = capacitaCaricoTonnellate;
         }
@@ -34,7 +34,8 @@ namespace EsercizioVeicoli.Library
                                  $"Marca: {Marca} \n" +
                                  $"Chilometri percorsi: {KmPercorsi} \n" +
                                  $"litri di carburante consumato: {LitriCarburanteConsumato} \n" +
-                                 $"Capacità carico di tonnellate: {CapacitaCaricoTonnelate}");
+                                 $"Capacità carico di tonnellate: {CapacitaCaricoTonnelate} \n" +
+                                 $"Cavalli: {Cavalli}");
         }
     }
 }
